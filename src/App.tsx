@@ -1,16 +1,16 @@
-import { useGetItemsQuery } from './redux/api/baseApi'
+import { Toaster } from 'react-hot-toast'
+import Navbar from './components/Navbar'
+import { Outlet } from 'react-router'
 
 function App() {
-  const { data, isError, isLoading } = useGetItemsQuery(undefined)
-  console.log(data, isError, isLoading)
-
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-
   return (
     <div>
-      <h1>Counter with redux</h1>
+      <Navbar />
+      <Outlet />
+
+      <div className="container relative">
+        <Toaster position="bottom-left" reverseOrder={false} />
+      </div>
     </div>
   )
 }
