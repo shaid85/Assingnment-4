@@ -5,8 +5,6 @@ export const bookApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://phl2b5-assignment-3.vercel.app/api',
-    //https://phl2b5-assignment-3.vercel.app/api
-    //http://localhost:5000/api
   }),
   tagTypes: ['Books'],
   endpoints: (builder) => ({
