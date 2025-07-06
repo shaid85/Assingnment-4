@@ -7,7 +7,9 @@ import type { APIError } from '../type/book'
 const EditBook = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { data, isLoading: isFetching } = useGetBookByIdQuery(id)
+  const { data, isLoading: isFetching } = useGetBookByIdQuery(id, {
+    refetchOnMountOrArgChange: true,
+  })
   const [editBook, { isLoading }] = useEditBookMutation()
 
   const book = data?.data
@@ -76,7 +78,7 @@ const EditBook = () => {
     }
   }
 
-  if (isFetching) return <p>Loading book data...</p>
+  if (isFetching) return <div className="loading">Loading book data...</div>
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 shadow rounded mt-8">

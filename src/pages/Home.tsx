@@ -38,8 +38,8 @@ function Home() {
   const total = books?.total ?? 0
   const totalPages = Math.ceil(total / limit)
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error fetching books.</div>
+  if (isLoading) return <div className="loading">Loading...</div>
+  if (error) return <div className="loading">Error fetching books.</div>
   return (
     <div className="container">
       <h1 className="title text-center text-3xl mb-10 ">
@@ -49,8 +49,9 @@ function Home() {
         <div className="md:text-xl font-medium ">
           {total == 1 ? 'Total book' : 'Total books'} : {total}
         </div>
-        <div className="flex gap-2">
+        <div className="flex justify-end flex-wrap w-[70%] gap-2">
           <select
+            id="genre_filter"
             onChange={(e) => {
               setGenreFilter(e.target.value)
               setOffset(0) // reset pagination
@@ -67,6 +68,7 @@ function Home() {
             <option value="BIOGRAPHY">Biography</option>
           </select>
           <select
+            id="sort_filter"
             onChange={handleSortChange}
             className="border px-2 py-1 rounded"
             value={sortOption.label}
@@ -105,33 +107,49 @@ function Home() {
             </p>
             <p>
               <strong>Available:</strong>{' '}
-              {book.available ? 'Yes' : 'Unavailable'}
+              {book.available ? (
+                'Yes'
+              ) : (
+                <span className="text-red-500">Unavailable</span>
+              )}
             </p>
-            <div className="edit flex gap-2 mt-5">
-              <Link
-                to={book._id}
-                className="bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2"
-              >
-                View
-              </Link>
-              <Link
-                to={`/edit-book/${book._id}`}
-                className="bg-green-600 text-white rounded hover:bg-green-700 px-4 py-2"
-              >
-                Edit
-              </Link>
-              <Link
-                to={`/delete-book/${book._id}`}
-                className="bg-red-600 text-white rounded hover:bg-red-700 px-4 py-2"
-              >
-                Delete
-              </Link>
-              <Link
-                to={`/borrow/${book._id}`}
-                className="bg-green-700 text-white rounded hover:bg-green-800 px-4 py-2"
-              >
-                Borrow
-              </Link>
+            <div className="edit flex flex-wrap gap-2 mt-5">
+              <div className="flex gap-2">
+                <Link
+                  to={book._id}
+                  className="bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2"
+                >
+                  View
+                </Link>
+                <Link
+                  to={`/edit-book/${book._id}`}
+                  className="bg-green-600 text-white rounded hover:bg-green-700 px-4 py-2"
+                >
+                  Edit
+                </Link>
+                <Link
+                  to={`/delete-book/${book._id}`}
+                  className="bg-red-600 text-white rounded hover:bg-red-700 px-4 py-2"
+                >
+                  Delete
+                </Link>
+              </div>
+              {book.copies === 0 || !book.available ? (
+                <button
+                  disabled
+                  className="bg-gray-400 text-white rounded px-4 py-2 cursor-not-allowed"
+                  title="This book is currently unavailable"
+                >
+                  Borrow
+                </button>
+              ) : (
+                <Link
+                  to={`/borrow/${book._id}`}
+                  className="bg-green-700 text-white rounded hover:bg-green-800 px-4 py-2"
+                >
+                  Borrow
+                </Link>
+              )}
             </div>
           </div>
         ))}

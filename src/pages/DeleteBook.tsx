@@ -20,24 +20,26 @@ const DeleteBook = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow rounded">
-      <h1 className="text-xl font-bold mb-4">
-        Are you sure you want to delete this book?
-      </h1>
-      <div className="flex gap-4">
-        <button
-          onClick={handleDelete}
-          disabled={isLoading}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-        >
-          {isLoading ? 'Deleting...' : 'Delete'}
-        </button>
-        <button
-          onClick={() => navigate(-1)}
-          className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
-        >
-          Cancel
-        </button>
+    <div className="container h-120">
+      <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow rounded">
+        <h1 className="text-xl font-bold mb-4">
+          Are you sure you want to delete this book?
+        </h1>
+        <div className="flex gap-4">
+          <button
+            onClick={handleDelete}
+            disabled={isLoading}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            {isLoading ? 'Deleting...' : 'Delete'}
+          </button>
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   )

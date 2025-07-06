@@ -10,10 +10,10 @@ const Footer = () => {
         {/* Right: Menu */}
         <div className="space-x-4 text-sm">
           <Link to="/" className="hover:underline">
-            Home
+            All Books
           </Link>
           <Link to="/create-book" className="hover:underline">
-            Create book
+            Add Book
           </Link>
 
           <Link to="/borrow-summary" className="hover:underline">

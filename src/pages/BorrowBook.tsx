@@ -52,58 +52,60 @@ const BorrowBook = () => {
   }
 
   return (
-    <div className="max-w-lg mx-auto mt-10 bg-white p-6 rounded shadow">
-      <h2 className="text-2xl font-bold mb-6">Borrow Book</h2>
+    <div className="container">
+      <div className="max-w-lg mx-auto mt-10 bg-white md:p-10 p-6 rounded shadow">
+        <h2 className="text-2xl font-bold mb-6">Borrow Book</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Book ID */}
-        <div>
-          <label className="block font-medium mb-1">Book ID</label>
-          <input
-            type="text"
-            name="book"
-            value={form.book}
-            readOnly
-            className="w-full border border-gray-300 p-2 rounded bg-gray-100 cursor-not-allowed"
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Book ID */}
+          <div>
+            <label className="block font-medium mb-1">Book ID</label>
+            <input
+              type="text"
+              name="book"
+              value={form.book}
+              readOnly
+              className="w-full border border-gray-300 p-2 rounded bg-gray-100 cursor-not-allowed"
+            />
+          </div>
 
-        {/* Quantity */}
-        <div>
-          <label className="block font-medium mb-1">Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            value={form.quantity}
-            onChange={handleChange}
-            min={1}
-            required
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
+          {/* Quantity */}
+          <div>
+            <label className="block font-medium mb-1">Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              value={form.quantity}
+              onChange={handleChange}
+              min={1}
+              required
+              className="w-full border border-gray-300 p-2 rounded"
+            />
+          </div>
 
-        {/* Due Date */}
-        <div>
-          <label className="block font-medium mb-1">Due Date</label>
-          <input
-            type="date"
-            name="dueDate"
-            value={form.dueDate}
-            onChange={handleChange}
-            required
-            className="w-full border border-gray-300 p-2 rounded"
-          />
-        </div>
+          {/* Due Date */}
+          <div>
+            <label className="block font-medium mb-1">Due Date</label>
+            <input
+              type="date"
+              name="dueDate"
+              value={form.dueDate}
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 p-2 rounded"
+            />
+          </div>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-        >
-          {isLoading ? 'Borrowing...' : 'Borrow Book'}
-        </button>
-      </form>
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+          >
+            {isLoading ? 'Borrowing...' : 'Borrow Book'}
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

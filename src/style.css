@@ -30,6 +30,13 @@ img {
   border: 1px solid #d0d0d0;
   padding: 30px;
 }
+.loading {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 90vh;
+  padding: 6vw 20px;
+  font-size: 20px;
+}
 
 @media (max-width: 460px) {
   nav > div {

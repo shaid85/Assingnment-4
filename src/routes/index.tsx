@@ -7,6 +7,10 @@ import CreateBook from '../pages/CreateBook'
 import EditBook from '../pages/EditBook'
 import BorrowBook from '../pages/BorrowBook'
 import DeleteBook from '../pages/DeleteBook'
+import PrivateRoute from '../components/PrivateRoute'
+import Dashboard from '../pages/Dashboard'
+import LoginForm from '../components/LoginForm'
+import CheckOut from '../components/CheckOut'
 
 const router = createBrowserRouter([
   {
@@ -47,6 +51,26 @@ const router = createBrowserRouter([
         path: '/borrow-summary',
         // element: <App />,
         Component: BorrowedBooksPage,
+      },
+      {
+        path: '/dashboard',
+        Component: () => (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/checkout',
+        Component: () => (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/login',
+        Component: () => <LoginForm />,
       },
     ],
   },

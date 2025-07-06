@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { useGetBorrowedBooksQuery } from '../redux/api/baseApi'
 import type { BorrowedBook } from '../type/book'
 
@@ -5,8 +6,8 @@ const BorrowedBooksPage = () => {
   const { data, error, isLoading } = useGetBorrowedBooksQuery(undefined)
   const borrowedList: BorrowedBook[] = data?.data || []
 
-  if (isLoading) return <p>Loading borrowed books...</p>
-  if (error) return <p>Error loading borrowed books.</p>
+  if (isLoading) return <div className="loading">Loading borrowed books...</div>
+  if (error) return <div className="loading">Error loading borrowed books.</div>
 
   function timeAgo(dateString: string) {
     const now = new Date()
@@ -48,6 +49,28 @@ const BorrowedBooksPage = () => {
             )}
           </ul>
         )}
+        <div className="edit flex flex-wrap gap-2 mt-5">
+          <div className="flex gap-2">
+            <Link
+              to="/"
+              className="bg-blue-900 text-white rounded hover:bg-blue-700 px-4 py-2"
+            >
+              Home
+            </Link>
+            <Link
+              to="/checkout"
+              className="bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2"
+            >
+              Checkout
+            </Link>
+            <Link
+              to={`/dashboard/`}
+              className="bg-green-600 text-white rounded hover:bg-green-700 px-4 py-2"
+            >
+              Dashboard
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )
