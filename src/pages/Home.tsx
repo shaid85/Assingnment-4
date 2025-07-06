@@ -45,8 +45,8 @@ function Home() {
       <h1 className="title text-center text-3xl mb-10 ">
         📚 Welcome to My Library Management System!
       </h1>
-      <div className="flex justify-between items-center mb-4">
-        <div className="text-xl font-medium mb-5">
+      <div className="flex justify-between items-center mb-10">
+        <div className="md:text-xl font-medium ">
           {total == 1 ? 'Total book' : 'Total books'} : {total}
         </div>
         <div className="flex gap-2">
@@ -80,7 +80,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
         {books?.data?.map((book: Book) => (
           <div className="card-box flex flex-col" key={book._id}>
             <div className="bookimg">

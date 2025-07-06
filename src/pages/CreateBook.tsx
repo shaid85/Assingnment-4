@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useAddBookMutation } from '../redux/api/baseApi'
 import toast from 'react-hot-toast'
 import type { APIError } from '../type/book'
+import { useNavigate } from 'react-router'
 
 const CreateBook = () => {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     title: '',
     author: '',
@@ -43,6 +45,7 @@ const CreateBook = () => {
         copies: 1,
         available: true,
       })
+      navigate('/')
     } catch (error) {
       const err = error as APIError
       const errMessage =
@@ -53,93 +56,95 @@ const CreateBook = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 shadow rounded mt-8">
-      <h1 className="text-2xl font-bold mb-4">Create New Book</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          className="w-full border p-2 rounded"
-          value={form.title}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="text"
-          name="author"
-          placeholder="Author"
-          className="w-full border p-2 rounded"
-          value={form.author}
-          onChange={handleChange}
-          required
-        />
-
-        <select
-          name="genre"
-          value={form.genre}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        >
-          <option value="">Select Genre</option>
-          <option value="FICTION">Fiction</option>
-          <option value="NON_FICTION">Non-fiction</option>
-          <option value="SCIENCE">Science</option>
-          <option value="FANTASY">Fantasy</option>
-          <option value="HISTORY">History</option>
-          <option value="BIOGRAPHY">Biography</option>
-        </select>
-
-        <input
-          type="text"
-          name="isbn"
-          placeholder="ISBN"
-          className="w-full border p-2 rounded"
-          value={form.isbn}
-          onChange={handleChange}
-          required
-        />
-
-        <textarea
-          name="description"
-          placeholder="Description"
-          className="w-full border p-2 rounded"
-          value={form.description}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="number"
-          name="copies"
-          placeholder="Copies"
-          className="w-full border p-2 rounded"
-          value={form.copies}
-          onChange={handleChange}
-          min={1}
-          required
-        />
-
-        <label className="flex items-center gap-2">
+    <div className="container">
+      <div className="max-w-2xl mx-auto bg-white md:p-10 p-6 shadow rounded mt-8">
+        <h1 className="text-2xl font-bold mb-4">Create New Book</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            type="checkbox"
-            name="available"
-            checked={form.available}
+            type="text"
+            name="title"
+            placeholder="Title"
+            className="w-full border p-2 rounded"
+            value={form.title}
             onChange={handleChange}
+            required
           />
-          Available
-        </label>
 
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Creating...' : 'Create Book'}
-        </button>
-      </form>
+          <input
+            type="text"
+            name="author"
+            placeholder="Author"
+            className="w-full border p-2 rounded"
+            value={form.author}
+            onChange={handleChange}
+            required
+          />
+
+          <select
+            name="genre"
+            value={form.genre}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            required
+          >
+            <option value="">Select Genre</option>
+            <option value="FICTION">Fiction</option>
+            <option value="NON_FICTION">Non-fiction</option>
+            <option value="SCIENCE">Science</option>
+            <option value="FANTASY">Fantasy</option>
+            <option value="HISTORY">History</option>
+            <option value="BIOGRAPHY">Biography</option>
+          </select>
+
+          <input
+            type="text"
+            name="isbn"
+            placeholder="ISBN"
+            className="w-full border p-2 rounded"
+            value={form.isbn}
+            onChange={handleChange}
+            required
+          />
+
+          <textarea
+            name="description"
+            placeholder="Description"
+            className="w-full border p-2 rounded"
+            value={form.description}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="number"
+            name="copies"
+            placeholder="Copies"
+            className="w-full border p-2 rounded"
+            value={form.copies}
+            onChange={handleChange}
+            min={1}
+            required
+          />
+
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="available"
+              checked={form.available}
+              onChange={handleChange}
+            />
+            Available
+          </label>
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Creating...' : 'Create Book'}
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

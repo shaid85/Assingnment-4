@@ -1,16 +1,16 @@
 import { Toaster } from 'react-hot-toast'
 import Navbar from './components/Navbar'
 import { Outlet } from 'react-router'
+import Footer from './components/Footer'
 
 function App() {
   return (
     <div>
       <Navbar />
       <Outlet />
+      <Footer />
 
-      <div className="container relative">
-        <Toaster position="bottom-left" reverseOrder={false} />
-      </div>
+      <Toaster position="bottom-left" reverseOrder={false} />
     </div>
   )
 }

@@ -16,7 +16,8 @@ img {
   margin: 0 auto;
   padding: 50px 15px;
 }
-.container-header {
+.container-header,
+.container-footer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
@@ -28,4 +29,15 @@ img {
   border-radius: 10px;
   border: 1px solid #d0d0d0;
   padding: 30px;
+}
+
+@media (max-width: 460px) {
+  nav > div {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  footer > div {
+    flex-direction: column-reverse;
+    row-gap: 15px;
+  }
 }
