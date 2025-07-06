@@ -65,13 +65,6 @@ function SingleBook() {
             >
               Back
             </Link>
-
-            <Link
-              to={`/delete-book/${book._id}`}
-              className="bg-red-600 text-white rounded hover:bg-red-700 px-4 py-2"
-            >
-              Delete
-            </Link>
           </div>
           <Link
             to={`/borrow/${b._id}`}
