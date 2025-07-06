@@ -1,5 +1,3 @@
-import React from 'react'
-
 const LoginForm = () => {
   return (
     <div className="max-w-md mx-auto mt-20 bg-white p-8 rounded shadow">
