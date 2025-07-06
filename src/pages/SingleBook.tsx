@@ -3,7 +3,13 @@ import { useGetBookByIdQuery } from '../redux/api/baseApi'
 
 function SingleBook() {
   const { id } = useParams()
-  const { data: book, isLoading, error } = useGetBookByIdQuery(id)
+  const {
+    data: book,
+    isLoading,
+    error,
+  } = useGetBookByIdQuery(id, {
+    refetchOnMountOrArgChange: true,
+  })
 
   if (isLoading) return <div className="loading">Loading...</div>
   if (error) return <div className="loading">Error fetching books.</div>
@@ -73,12 +79,22 @@ function SingleBook() {
               Delete
             </Link>
           </div>
-          <Link
-            to={`/borrow/${b._id}`}
-            className="bg-green-700 text-white rounded hover:bg-green-800 px-4 py-2"
-          >
-            Borrow
-          </Link>
+          {b.copies === 0 || !b.available ? (
+            <button
+              disabled
+              className="bg-gray-400 text-white rounded px-4 py-2 cursor-not-allowed"
+              title="This book is currently unavailable"
+            >
+              Borrow
+            </button>
+          ) : (
+            <Link
+              to={`/borrow/${b._id}`}
+              className="bg-green-700 text-white rounded hover:bg-green-800 px-4 py-2"
+            >
+              Borrow
+            </Link>
+          )}
         </div>
       </div>
     </div>
