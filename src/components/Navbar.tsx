@@ -16,7 +16,7 @@ const Navbar = () => {
             {/* Menu Items */}
             <div className="flex space-x-6 text-gray-700 font-medium">
               <Link to="/" className="hover:text-blue-600 cursor-pointer">
-                All Books
+                All Book
               </Link>
               <Link
                 to="/create-book"
